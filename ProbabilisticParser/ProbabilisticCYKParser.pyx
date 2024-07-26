@@ -11,6 +11,13 @@ from SyntacticParser.PartialParseList cimport PartialParseList
 
 cdef class ProbabilisticCYKParser:
     cpdef list parse(self, ProbabilisticContextFreeGrammar pcfg, Sentence sentence):
+        """
+        Constructs an array of most probable parse trees for a given sentence according to the given grammar. CYK parser
+        is based on a dynamic programming algorithm.
+        :param pcfg: Probabilistic context free grammar used in parsing.
+        :param sentence: Sentence to be parsed.
+        :return: Array list of most probable parse trees for the given sentence.
+        """
         cdef list parse_trees, candidates
         cdef Sentence back_up
         cdef list table

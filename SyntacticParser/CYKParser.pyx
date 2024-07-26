@@ -10,6 +10,13 @@ from SyntacticParser.PartialParseList cimport PartialParseList
 cdef class CYKParser:
 
     cpdef list parse(self, ContextFreeGrammar cfg, Sentence sentence):
+        """
+        Constructs an array of possible parse trees for a given sentence according to the given grammar. CYK parser
+        is based on a dynamic programming algorithm.
+        :param cfg: Context free grammar used in parsing.
+        :param sentence: Sentence to be parsed.
+        :return: Array list of possible parse trees for the given sentence.
+        """
         cdef list parse_trees, candidates
         cdef Sentence back_up
         cdef list table

@@ -4,6 +4,11 @@ from ContextFreeGrammar.RuleType import RuleType
 cdef class ProbabilisticRule(Rule):
 
     cpdef constructor6(self, str rule):
+        """
+        Constructor for any probabilistic rule from a string. The string is of the form X -> .... [probability] The
+        method constructs left hand side symbol and right hand side symbol(s) from the input string.
+        :param rule: String containing the rule. The string is of the form X -> .... [probability]
+        """
         cdef str prob, left, right
         cdef list rightSide
         cdef int i
@@ -35,16 +40,35 @@ cdef class ProbabilisticRule(Rule):
             self.constructor6(param1)
 
     cpdef float getProbability(self):
+        """
+        Accessor for the probability attribute.
+        :return: Probability attribute.
+        """
         return self.__probability
 
     cpdef increment(self):
+        """
+        Increments the count attribute.
+        """
         self.__count = self.__count + 1
 
     cpdef normalizeProbability(self, int total):
+        """
+        Calculates the probability from count and the given total value.
+        :param total: Value used for calculating the probability.
+        """
         self.__probability = self.__count / total
 
     cpdef int getCount(self):
+        """
+        Accessor for the count attribute.
+        :return: Count attribute.
+        """
         return self.__count
 
     def __str__(self) -> str:
+        """
+        Converts the rule to the form X -> ... [probability]
+        :return: String form of the rule in the form of X -> ... [probability]
+        """
         return super().__str__() + "[" + str(self.__probability) + "]"

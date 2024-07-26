@@ -19,4 +19,8 @@ cdef class ProbabilisticParseNode(ParseNode):
             self.__log_probability = param2
 
     cpdef float getLogProbability(self):
+        """
+        Accessor for the logProbability attribute.
+        :return: logProbability attribute.
+        """
         return self.__log_probability
